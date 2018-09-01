@@ -17,7 +17,6 @@
         android:textSize="25sp"
         android:textColor="@android:color/black"/>
 
-
     <Button
         android:id="@+id/btn_one"
         android:layout_width="match_parent"
@@ -58,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:background="#ff0000"
+        android:background="@android:color/darker_gray"
         android:text="submit" />
 
     <Button
@@ -66,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="140dp"
-        android:background="#ff0000"
+        android:background="@android:color/darker_gray"
         android:text="cancel" />
 </LinearLayout>
 
