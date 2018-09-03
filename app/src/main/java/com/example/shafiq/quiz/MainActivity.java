@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,15 +23,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String answer;
     private int questionLength = question.questions.length;
     private int mScore = 0;
+    static Random random = new Random();
 
-    Random f;
-
+//    Random f;
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        f = new Random();
+        random = new Random();
         btn_one = (Button) findViewById(R.id.btn_one);
         btn_one.setOnClickListener(this);
         btn_two = (Button) findViewById(R.id.btn_two);
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //      });
 
         tv_question = (TextView) findViewById(R.id.tv_question);
-        NextQuestion(f.nextInt(questionLength));
+        NextQuestion(random.nextInt(questionLength));
     }
 
     @Override
@@ -65,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mScore++;
                     Log.i(Tag, String.valueOf(mScore));
 
-                    NextQuestion(f.nextInt(questionLength));
+                    NextQuestion(random.nextInt(questionLength));
                 } else {
-                    NextQuestion(f.nextInt(questionLength));
+                    NextQuestion(random.nextInt(questionLength));
                 }
 
                 break;
@@ -77,9 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mScore++;
                     Log.i(Tag, String.valueOf(mScore));
 
-                    NextQuestion(f.nextInt(questionLength));
+                    NextQuestion(random.nextInt(questionLength));
                 } else {
-                    NextQuestion(f.nextInt(questionLength));
+                    NextQuestion(random.nextInt(questionLength));
                 }
 
                 break;
@@ -89,9 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mScore++;
                     Log.i(Tag, String.valueOf(mScore));
 
-                    NextQuestion(f.nextInt(questionLength));
+                    NextQuestion(random.nextInt(questionLength));
                 } else {
-                    NextQuestion(f.nextInt(questionLength));
+                    NextQuestion(random.nextInt(questionLength));
 
                 }
 
@@ -101,9 +103,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (btn_four.getText() == answer) {
                     mScore++;
                     Log.i(Tag, String.valueOf(mScore));
-                    NextQuestion(f.nextInt(questionLength));
+                    NextQuestion(random.nextInt(questionLength));
                 } else {
-                    NextQuestion(f.nextInt(questionLength));
+                    NextQuestion(random.nextInt(questionLength));
                 }
 
                 break;
@@ -131,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                });
 //        alertDialogBuilder.show();
         Intent intent=new Intent(this,Result.class);
-
         intent.putExtra("result",mScore);
         startActivity(intent);
 
@@ -158,13 +159,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void NextQuestion(int num) {
+
         tv_question.setText(question.getQuestion(num));
         btn_one.setText(question.getchoice1(num));
         btn_two.setText(question.getchoice2(num));
         btn_three.setText(question.getchoice3(num));
         btn_four.setText(question.getchoice4(num));
-
         answer = question.getCorrectAnswer(num);
+
+
     }
 
     public class Question {
@@ -205,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 "Odd",
                 "denis Ritchi"
         };
+
 
         public String getQuestion(int a) {
             String question = questions[a];
